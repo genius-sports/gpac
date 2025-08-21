@@ -54,11 +54,10 @@ extern "C" {
 
 /*! metadata types for GF_M2TS_METADATA_POINTER_DESCRIPTOR*/
 enum {
-	GF_M2TS_META_ID3 	= GF_4CC('I','D','3',' '),
-	GF_M2TS_META_KLVA 	= GF_4CC('K','L','V','A'),
+	GF_M2TS_META_ID3 = GF_4CC('I','D','3',' '),
+	GF_M2TS_META_KLVA= GF_4CC('K','L','V','A'),
+	GF_M2TS_META_WVTT= GF_4CC('W','V','T','T'),
 };
-
-
 
 /*! MPEG-2 Descriptor tags*/
 enum
@@ -304,6 +303,7 @@ typedef enum
 	GF_M2TS_METADATA_ID3_KLVA			= 0x156,
 	GF_M2TS_METADATA_SRT				= 0x157,
 	GF_M2TS_METADATA_TEXT				= 0x158,
+	GF_M2TS_METADATA_WVTT               = 0x159,
 
 } GF_M2TSStreamType;
 
