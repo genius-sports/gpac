@@ -352,6 +352,7 @@
     <ClCompile Include="..\..\src\filters\reframe_rawpcm.c" />
     <ClCompile Include="..\..\src\filters\reframe_rawvid.c" />
     <ClCompile Include="..\..\src\filters\reframe_truehd.c" />
+    <ClCompile Include="..\..\src\filters\reframe_ts_wvtt.c" />
     <ClCompile Include="..\..\src\filters\resample_audio.c" />
     <ClCompile Include="..\..\src\filters\sei_load.c" />
     <ClCompile Include="..\..\src\filters\restamp.c" />

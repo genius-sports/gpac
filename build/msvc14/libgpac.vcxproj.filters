@@ -1409,6 +1409,9 @@
     <ClCompile Include="..\..\src\filters\reframe_truehd.c">
       <Filter>filters</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\filters\reframe_ts_wvtt.c">
+      <Filter>filters</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\filters\reframer.c">
       <Filter>filters</Filter>
     </ClCompile>

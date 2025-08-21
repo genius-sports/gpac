@@ -1685,6 +1685,15 @@ static void gf_m2ts_process_pmt(GF_M2TS_Demuxer *ts, GF_M2TS_SECTION_ES *pmt, GF
 						else {
 							gf_m2ts_metadata_descriptor_del(metad);
 						}
+					} else if (metad->format_identifier ==  GF_M2TS_META_WVTT && metad->application_format_identifier == GF_M2TS_META_WVTT) {
+						if (pes)
+						{
+							if (pes->metadata_descriptor) {
+								gf_m2ts_metadata_descriptor_del(pes->metadata_descriptor);
+							}
+							pes->metadata_descriptor = metad;
+							pes->stream_type = GF_M2TS_METADATA_WVTT;
+						}
 					} else {
 						/* don't know what to do with it for now, delete */
 						gf_m2ts_metadata_descriptor_del(metad);
@@ -3213,6 +3222,7 @@ GF_Err gf_m2ts_set_pes_framing(GF_M2TS_PES *pes, GF_M2TSPesFraming mode)
 		case GF_M2TS_AUDIO_LATM_AAC:
 		case GF_M2TS_AUDIO_AC3:
 		case GF_M2TS_AUDIO_EC3:
+		case GF_M2TS_METADATA_WVTT:
 		case 0xA1:
 			//for all our supported codec types, use a reframer filter
 			pes->reframe = gf_m2ts_reframe_default;
