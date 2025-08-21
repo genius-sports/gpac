@@ -461,6 +461,11 @@ static void m2tsdmx_declare_pid(GF_M2TSDmxCtx *ctx, GF_M2TS_PES *stream, GF_ESD 
 			stream->flags |= GF_M2TS_ES_IS_SECTION|GF_M2TS_ES_FULL_AU;
 			fake_stream = 2;
 			break;
+		case GF_M2TS_METADATA_WVTT:
+			stype = GF_STREAM_TEXT;
+			codecid = GF_M2TS_META_WVTT;
+			stream->flags |= GF_M2TS_ES_FULL_AU;
+			break;
 		default:
 			//GF_LOG(GF_LOG_INFO, GF_LOG_CONTAINER, ("[M2TSDmx] Stream type 0x%02X not supported - ignoring pid 0x%x\n", stream->stream_type, stream->pid));
 			if (!ctx->upes) {
@@ -1505,8 +1510,10 @@ static GF_Err m2tsdmx_configure_pid(GF_Filter *filter, GF_FilterPid *pid, Bool i
 		}
 		return GF_OK;
 	}
-	if (! gf_filter_pid_check_caps(pid))
+	if (! gf_filter_pid_check_caps(pid)) {
+		GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, ("[M2TSDMx] caps not supported \"%s\"\n", gf_filter_pid_get_name(pid)));
 		return GF_NOT_SUPPORTED;
+	}
 
 	//by default for all URLs, send packets as soon as the program is configured
 	ctx->mux_tune_state = DMX_TUNE_DONE;

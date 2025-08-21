@@ -414,14 +414,6 @@ GF_Err wvtt_box_dump(GF_Box *a, FILE * trace)
 
 #endif /*GPAC_DISABLE_ISOM*/
 
-typedef enum {
-	WEBVTT_PARSER_STATE_WAITING_SIGNATURE,
-	WEBVTT_PARSER_STATE_WAITING_HEADER,
-	WEBVTT_PARSER_STATE_WAITING_CUE,
-	WEBVTT_PARSER_STATE_WAITING_CUE_TIMESTAMP,
-	WEBVTT_PARSER_STATE_WAITING_CUE_PAYLOAD
-} GF_WebVTTParserState;
-
 struct _webvtt_parser {
 	GF_WebVTTParserState state;
 	Bool is_init, is_srt, suspend, is_eof, prev_line_empty, in_comment;
@@ -609,6 +601,11 @@ GF_Err gf_webvtt_parser_init(GF_WebVTTParser *parser, FILE **vtt_file, s32 unico
 void gf_webvtt_parser_suspend(GF_WebVTTParser *vttparser)
 {
 	vttparser->suspend = GF_TRUE;
+}
+
+void gf_webvtt_parser_force_state(GF_WebVTTParser *parser, GF_WebVTTParserState state)
+{
+	parser->state = state;
 }
 
 void gf_webvtt_parser_restart(GF_WebVTTParser *parser)

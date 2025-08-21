@@ -252,6 +252,7 @@ LOCAL_SRC_FILES := \
 	../../../../src/filters/reframe_rawpcm.c \
 	../../../../src/filters/reframe_rawvid.c \
 	../../../../src/filters/reframe_truehd.c \
+	../../../../src/filters/reframe_ts_wvtt.c \
 	../../../../src/filters/reframer.c \
 	../../../../src/filters/resample_audio.c \
 	../../../../src/filters/restamp.c \
