@@ -160,7 +160,7 @@ GF_Err reframe_ts_wvtt_process(GF_Filter *filter)
     FILE *mem_file = fmemopen(pck_data, pck_size, "r");
 
     // Assume UTF-8 encoding
-    gf_webvtt_parser_init(parser, mem_file, 0, GF_FALSE, ctx,  reframe_ts_wvtt_parse_callback_report, reframe_ts_wvtt_parse_callback_sample, reframe_ts_wvtt_parse_callback_header);
+    gf_webvtt_parser_init(parser, &mem_file, 0, GF_FALSE, ctx,  reframe_ts_wvtt_parse_callback_report, reframe_ts_wvtt_parse_callback_sample, reframe_ts_wvtt_parse_callback_header);
 
     // as the input packets do not contain the WEBVTT signature at the beginning
     // we have to force the parser to start looking for cues immediately
