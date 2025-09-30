@@ -7361,8 +7361,16 @@ Bool gf_filter_pid_is_eos(GF_FilterPid *pid)
 
 	if (pidi->discard_packets && !pid->pid->filter->session->in_final_flush) return GF_FALSE;
 	if (!pidi->is_end_of_stream) return GF_FALSE;
-	if (!pidi->filter->eos_probe_state)
-		pidi->filter->eos_probe_state = 1;
+
+	if (pidi->filter) {
+		GF_LOG(GF_LOG_ERROR, GF_LOG_FILTER, ("gf_filter_pid_is_eos: filter: %s PID: %s\n", pid->filter->name, pid->pid->name));
+		if (!pidi->filter->eos_probe_state)
+			pidi->filter->eos_probe_state = 1;
+	} else {
+		GF_LOG(GF_LOG_ERROR, GF_LOG_FILTER, ("gf_filter_pid_is_eos PID has no filter: PID: %s\n", pid->pid->name));
+	}
+
+	
 	return GF_TRUE;
 }
 
